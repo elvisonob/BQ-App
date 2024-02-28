@@ -1,7 +1,9 @@
+import Header from './components/Header';
+
 const App = () => {
   return (
     <div>
-      <p>Welcome to my Quiz App</p>
+      <Header />
     </div>
   );
 };
