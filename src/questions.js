@@ -1,4 +1,4 @@
-export const QUESTIONS = [
+const QUESTIONS = [
   {
     id: 'q1',
     text: 'Which city is the capital of England',
@@ -35,3 +35,5 @@ export const QUESTIONS = [
     ],
   },
 ];
+
+export default QUESTIONS;
