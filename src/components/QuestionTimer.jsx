@@ -6,6 +6,10 @@ const QuestionTimer = ({ timeout, onTimeout }) => {
   useEffect(() => {
     console.log('setting timeout');
     setTimeout(onTimeout, timeout);
+    // return () => {
+    //   console.log('clearing Timeout');
+    //   clearTimeout(timer);
+    // };
   }, [timeout, onTimeout]);
 
   useEffect(() => {
@@ -13,6 +17,11 @@ const QuestionTimer = ({ timeout, onTimeout }) => {
     setInterval(() => {
       setRemainingTime((prevRemainingTime) => prevRemainingTime - 100);
     }, 100);
+
+    // return () => {
+    //   console.log('clearing Interval');
+    //   clearInterval(interval);
+    // };
   }, []);
 
   return <progress id="question-time" max={timeout} value={remainingTime} />;
