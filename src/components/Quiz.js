@@ -1,9 +1,9 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback } from 'react';
 import QUESTIONS from './../questions';
 import QuestionTimer from './QuestionTimer.jsx';
+import Answers from './Answers.jsx';
 
 export default function Quiz() {
-  const shuffledAnswers = useRef();
   const [answerState, setAnswerState] = useState('');
   const [userAnswers, setUserAnswers] = useState([]);
 
@@ -46,11 +46,6 @@ export default function Quiz() {
     );
   }
 
-  if (!shuffledAnswers.current) {
-    shuffledAnswers.current = [...QUESTIONS[activeQuestionIndex].answers];
-    shuffledAnswers.current.sort(() => Math.random() - 0.5);
-  }
-
   return (
     <div className="displayQuestion">
       <div style={{ textAlign: 'center' }}>
@@ -62,33 +57,13 @@ export default function Quiz() {
       </div>
 
       <p>{QUESTIONS[activeQuestionIndex].text}</p>
-      <ul id="answers">
-        {shuffledAnswers.current.map((answer) => {
-          const isSelected = userAnswers[userAnswers.length - 1] === answer;
-          let cssClass = '';
-
-          if (answerState === 'answered' && isSelected) {
-            cssClass = 'selected';
-          }
-
-          if (
-            (answerState === 'correct' || answerState === 'wrong') &&
-            isSelected
-          ) {
-            cssClass = answerState;
-          }
-          return (
-            <li key={answer} className="answer">
-              <button
-                onClick={() => handleSelectAnswer(answer)}
-                className={cssClass}
-              >
-                {answer}
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+      <Answers
+        key={activeQuestionIndex}
+        answers={QUESTIONS[activeQuestionIndex].answers}
+        selectedAnswer={userAnswers[userAnswers.length - 1]}
+        answerState={answerState}
+        onSelect={handleSelectAnswer}
+      />
     </div>
   );
 }
