@@ -3,7 +3,6 @@ import QUESTIONS from './../questions';
 import Question from './Question';
 
 export default function Quiz() {
-  const [answerState, setAnswerState] = useState('');
   const [userAnswers, setUserAnswers] = useState([]);
 
   const activeQuestionIndex =
@@ -49,10 +48,6 @@ export default function Quiz() {
     <div className="displayQuestion">
       <Question
         key={activeQuestionIndex}
-        questionText={QUESTIONS[activeQuestionIndex].text}
-        answers={QUESTIONS[activeQuestionIndex].answers}
-        answerState={answerState}
-        selectedAnswer={userAnswers[userAnswers.length - 1]}
         onSelectAnswer={handleSelectAnswer}
         onSkipAnswer={handleSkipAnswer}
       />
