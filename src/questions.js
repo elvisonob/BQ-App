@@ -15,7 +15,7 @@ const QUESTIONS = [
     answers: [
       'JMV Turner',
       'Queen Elizabeth II',
-      'Wiston Churchill',
+      'Winston Churchill',
       'Jane Austen',
     ],
   },
